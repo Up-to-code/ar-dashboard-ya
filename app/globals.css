@@ -1,6 +1,31 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: 'Lama_Sans';
+  src: url('/Fonts/Web/Standard/LamaSans-Regular.woff2') format('woff2'),
+       url('/Fonts/Web/Standard/LamaSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lama_Sans';
+  src: url('/Fonts/Web/Standard/LamaSans-Bold.woff2') format('woff2'),
+       url('/Fonts/Web/Standard/LamaSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Lama_Sans';
+  src: url('/Fonts/Web/Standard/LamaSans-Light.woff2') format('woff2'),
+       url('/Fonts/Web/Standard/LamaSans-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 @custom-variant dark (&:is(.dark *));
 :root {
   --background: oklch(1.0000 0 0);
