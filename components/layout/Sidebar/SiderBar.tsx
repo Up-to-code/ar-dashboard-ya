@@ -3,7 +3,7 @@ import React from 'react';
 import SidebarHeader from './SidebarHeader';
 import MainNavigation from './MainNavigation';
 import ApplicationsSection from './ApplicationsSection';
-import DownloadSection from './DownloadSection';
+import DownloadSection from './google';
 
 // Main Sidebar Component
 const Sidebar = () => {
@@ -15,7 +15,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="h-[911px] px-6 py-6 bg-white rounded-[30px] shadow-[0px_5px_10.699999809265137px_0px_rgba(59,75,101,0.08)] outline  outline-offset-[-1px] outline-black/10 inline-flex flex-col justify-end items-end gap-7 overflow-hidden" >
+    <div className="h-[911px] px-6 py-6 bg-white rounded-[30px] shadow outline  outline-offset-[-1px] outline-black/10 inline-flex flex-col justify-end items-end gap-7 overflow-hidden" >
       {/* Header Section */}
       <SidebarHeader />
       {/* Main Content */}

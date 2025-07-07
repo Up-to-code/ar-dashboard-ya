@@ -12,7 +12,7 @@ function Header() {
   return (
     <div className="w-full h-20 px-10 flex items-center justify-between py-6">
       {/* Logo Section */}
-      <div className="flex items-center w-[258px] justify-center">
+      <div className="flex items-center w-[230px] justify-center">
         <Image src="/icon/Logo.svg" alt="logo" width={72} height={72} />
       </div>
 

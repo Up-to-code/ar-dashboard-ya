@@ -1,5 +1,6 @@
 import React from 'react';
 import NavItem from './NavItem';
+import { hr } from 'date-fns/locale';
 
 interface MainNavigationProps {
   activeItem: string;
@@ -11,12 +12,14 @@ const MainNavigation: React.FC<MainNavigationProps> = ({ activeItem, onItemClick
     {
       id: 'home',
       title: 'الرئيسية',
-      icon: "./icon/home.svg"
+      icon: "./icon/home.svg",
+      href: "/"
     },
     {
       id: 'services',
       title: 'الخدمــــات',
-      icon: "./icon/briefcase.svg"
+      icon: "./icon/briefcase.svg",
+      href: "/services"
     },
     {
       id: 'orders',
@@ -34,14 +37,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({ activeItem, onItemClick
     {
       id: 'reservations',
       title: 'الحجــوزات',
-      icon: (
-        <>
-          <div className="w-4 h-1.5 left-[1.02px] top-[13.54px] absolute bg-slate-600" />
-          <div className="w-4 h-3 left-[2.10px] top-[3.54px] absolute bg-slate-600" />
-          <div className="w-1.5 h-1 left-[7.29px] top-[1.04px] absolute bg-slate-600" />
-          <div className="w-1.5 h-[1.25px] left-[6.88px] top-[8.54px] absolute bg-slate-600" />
-        </>
-      )
+   
     },
     {
       id: 'customers',
