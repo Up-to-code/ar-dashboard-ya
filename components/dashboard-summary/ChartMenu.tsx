@@ -23,7 +23,7 @@ function ChartMenu({
   // Prefer data.is if present, otherwise fallback to active prop
   const isActive = typeof data.is === "boolean" ? data.is : !!active;
   const textColor = isActive ? "text-primary" : "text-secondary";
-  const bgColor = isActive ? "bg-primary/10" : "bg-secondary/10";
+  const bgColor = isActive ? "bg-primary/10" : "bg-zinc-100";
 
   return (
     <div className="mt-4">

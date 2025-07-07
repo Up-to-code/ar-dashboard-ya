@@ -1,106 +1,167 @@
-"use client"
-
-import React from "react"
-import { CartesianGrid, Line, LineChart, XAxis, Tooltip, ResponsiveContainer } from "recharts"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+import React, { JSX } from "react";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { ChartConfig, ChartContainer } from "@/components/ui/chart"
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  ResponsiveContainer,
+  ReferenceLine,
+  Tooltip,
+} from "recharts";
 
-export const description = ""
-
-const chartData = [
-  { month: "January", desktop: 186 },
-  { month: "February", desktop: 305 },
-  { month: "March", desktop: 237 },
-  { month: "April", desktop: 73 },
-  { month: "May", desktop: 209 },
-  { month: "June", desktop: 214 },
-]
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "var(--color-primary)",
-  },
-} satisfies ChartConfig
-
-function CustomDot(props: { cx: number; cy: number }) {
-  const { cx, cy } = props
-  return (
-    <g>
-      <circle cx={cx} cy={cy} r={6} stroke="#5A6A85" strokeWidth={2} fill="#fff" />
-    </g>
-  )
+interface ChartDataPoint {
+  month: string;
+  value: number;
 }
 
-function CustomTooltip({ active, payload, coordinate }: { active?: boolean; payload?: { value: number }[]; coordinate?: { x: number; y: number } }) {
-  if (active && payload && payload.length && coordinate) {
-    const style = {
-      left: coordinate.x,
-      top: coordinate.y - 40,
-      position: 'absolute',
-      transform: 'translate(-50%, 0)',
-      pointerEvents: 'none',
-      zIndex: 10,
-    } as React.CSSProperties
+interface TooltipProps {
+  active?: boolean;
+  payload?: Array<{
+    value: number;
+    payload: ChartDataPoint;
+  }>;
+  label?: string;
+}
+
+interface DotProps {
+  cx?: number;
+  cy?: number;
+  payload?: ChartDataPoint;
+}
+
+const chartData: ChartDataPoint[] = [
+  { month: "الأحد", value: 58 },
+  { month: "الإثنين", value: 32 },
+  { month: "الثلاثاء", value: 35 },
+  { month: "الأربعاء", value: 5 },
+  { month: "الخميس", value: 42 },
+  { month: "الجمعة", value: 47 },
+  { month: "السبت", value: 18 },
+];
+
+// Custom tooltip component
+const CustomTooltip: React.FC<TooltipProps> = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
     return (
-      <div style={style} className="flex flex-col items-center">
-        <div className="bg-[#5A6A85] text-white rounded-md px-3 py-1 text-xs font-bold text-center shadow-lg min-w-[60px]">
-          {payload[0].value} طلب
-        </div>
-        <div className="w-2 h-2 bg-[#5A6A85] rotate-45 -mt-1" style={{ borderRadius: 2 }} />
+      <div className="bg-slate-800 text-white px-3 py-2 rounded-lg shadow-lg border border-slate-600">
+        <p className="font-semibold text-sm">{label}</p>
+        <p className="text-red-400 text-lg font-bold">{payload[0].value}</p>
       </div>
-    )
+    );
   }
-  return null
-}
+  return null;
+};
 
-export function ChartLineDefault() {
+// Custom dot for the peak point
+
+
+export default function ChartDashboard(): JSX.Element {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Line Chart</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer config={chartConfig}>
-          <div style={{ position: 'relative', width: '100%', height: 240 }}>
-            <ResponsiveContainer width="100%" height={240}>
-              <LineChart
-                data={chartData}
-                margin={{ left: 12, right: 12 }}
-              >
-                <CartesianGrid vertical={false} />
-                <XAxis
-                  dataKey="month"
-                  tickLine={false}
-                  axisLine={false}
-                  tickMargin={8}
-                  tickFormatter={(value) => value.slice(0, 3)}
-                />
-                <Tooltip
-                  cursor={false}
-                  content={<CustomTooltip />}
-                  wrapperStyle={{ position: 'absolute', zIndex: 10, pointerEvents: 'none' }}
-                />
-                <Line
-                  dataKey="desktop"
-                  type="natural"
-                  stroke="var(--color-primary)"
-                  strokeWidth={2}
-                  dot={<CustomDot />}
-                  activeDot={{ r: 8, fill: '#5A6A85', stroke: '#fff', strokeWidth: 2 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </ChartContainer>
-      </CardContent>
-    </Card>
-  )
+    <div className="w-full h-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart
+          data={chartData}
+          margin={{
+            top: 40,
+            right: 30,
+            left: 20,
+            bottom: 20,
+          }}
+        >
+          {/* Grid lines - horizontal only */}
+          <CartesianGrid
+            strokeDasharray="3 3"
+            stroke="#E5E7EB"
+            horizontal={true}
+            vertical={false}
+          />
+
+          {/* X Axis */}
+          <XAxis
+            dataKey="month"
+            axisLine={false}
+            tickLine={false}
+            tick={{
+              fontSize: 12,
+              fill: "#6B7280",
+              fontFamily: "system-ui",
+            }}
+            dy={8}
+          />
+
+          {/* Y Axis */}
+          <YAxis
+            axisLine={false}
+            tickLine={false}
+            tick={{
+              fontSize: 12,
+              fill: "#6B7280",
+            }}
+            domain={[0, 60]}
+            ticks={[0, 10, 20, 30, 40, 50, 60]}
+          />
+
+          {/* Tooltip */}
+          <Tooltip
+            content={<CustomTooltip />}
+            cursor={{
+              stroke: "#D1D5DB",
+              strokeWidth: 1,
+              strokeDasharray: "3 3",
+            }}
+            animationDuration={150}
+          />
+
+          {/* Reference line at 50 */}
+          <ReferenceLine
+            y={50}
+            stroke="#D1D5DB"
+            strokeDasharray="3 3"
+            strokeWidth={1}
+          />
+
+          {/* Vertical reference line at peak */}
+          <ReferenceLine
+            x="الجمعة"
+            stroke="#D1D5DB"
+            strokeDasharray="3 3"
+            strokeWidth={1}
+          />
+
+          {/* Main line - red color matching the image */}
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="#E97F72"
+            strokeWidth={3}
+            dot={false}
+            activeDot={{
+              r: 5,
+              fill: "#09244BB2",
+              stroke: "#09244B",
+              strokeWidth: 2,
+            }}
+          />
+
+          {/* Peak point with custom label */}
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke="transparent"
+            strokeWidth={0}
+            // dot={(props: any) => {
+            //   if (props.payload?.month === "الجمعة") {
+            //     return <CustomPeakDot {...props} />;
+            //   }
+            //   // Return a hidden SVG element instead of null to satisfy type
+            //   return <g style={{ display: 'none' }} />;
+            // }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }

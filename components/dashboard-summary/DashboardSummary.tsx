@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card, CardHeader } from "../ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import ChartMenu from "./ChartMenu";
- 
+import ChartDashboard  from "./Chart";
+import LastOrders from "./LastOrders";
+
 export default function DashboardSummary() {
   const data = [
     {
-       icon_url: "/icon/Saudi_Riyal.svg",
+      icon_url: "/icon/Saudi_Riyal.svg",
       label: "المبيعات",
       amount: "10.99",
     },
@@ -15,6 +17,16 @@ export default function DashboardSummary() {
       icons_url: "/icon/Saudi_Riyal.svg",
       label: "المبيعات",
       amount: "10.99",
+    },
+    {
+      icon_url: "/icon/Saudi_Riyal.svg",
+      label: "السعر",
+      amount: "$10.99",
+    },
+    {
+      icon_url: "/icon/Saudi_Riyal.svg",
+      label: "السعر",
+      amount: "$10.99",
     },
     {
       icon_url: "/icon/Saudi_Riyal.svg",
@@ -33,10 +45,16 @@ export default function DashboardSummary() {
             <p className="text-secondary">ملخص المتجر ( 2025/12/13-02 )</p>
             <p className="text-right text-primary">عرض الكل</p>
           </div>
+        </CardHeader>
+        <CardContent className="flex  gap-4">
           {/* summary items */}
-          <div className="g flex gap-4">
+          <div className="">
             {data.map((item, idx) => (
-              <div key={item.label} onClick={() => setActiveIdx(idx)} style={{ cursor: 'pointer' }}>
+              <div
+                key={item.label}
+                onClick={() => setActiveIdx(idx)}
+                style={{ cursor: "pointer" }}
+              >
                 <ChartMenu
                   data={{
                     label: item.label,
@@ -48,7 +66,15 @@ export default function DashboardSummary() {
               </div>
             ))}
           </div>
-        </CardHeader>
+          <div className="flex-1 w-full -ml-16 overflow-x-auto">
+            <ChartDashboard />
+          </div>
+
+        </CardContent>
+        <CardFooter>
+          {/*  last updated  orders */}
+          <LastOrders />
+        </CardFooter>
       </Card>
     </div>
   );
