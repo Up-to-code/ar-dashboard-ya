@@ -5,7 +5,7 @@ export default function page() {
   return (
     <div>
       <TitlePage title="لوحة التحكم" />
-      <DashboardSummary />
+     
     </div>
   );
 }
