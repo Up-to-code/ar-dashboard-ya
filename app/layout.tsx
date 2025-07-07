@@ -26,7 +26,7 @@ export default function RootLayout({
         <Header />
         <div className="flex gap-4 p-4">
           <SiderBar />
-          <div className="flex-1  rounded-lg p-4">
+          <div className="flex-1  rounded-lg p-4 text-secondary">
             {children}
           </div>
         </div>
