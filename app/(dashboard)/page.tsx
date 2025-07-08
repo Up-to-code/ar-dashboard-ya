@@ -1,6 +1,7 @@
 import { Button_x, Button_xu } from "@/components/common/button";
 import TitlePage from "@/components/common/TitlePage";
 import DashboardSummary from "@/components/dashboard-summary/DashboardSummary";
+import WalletCard from "@/components/dashboard-summary/WalletCard";
 
 export default function page() {
   return (
@@ -16,7 +17,9 @@ export default function page() {
         <div className="flex-1/3">
           <DashboardSummary />
         </div>
-        <div className="flex-1">sd</div>
+        <div className="flex-1">
+          <WalletCard />
+        </div>
       </div>
     </div>
   );

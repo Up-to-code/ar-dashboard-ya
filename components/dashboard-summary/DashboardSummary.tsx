@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { Card, CardContent,  CardHeader } from "../ui/card";
 import ChartMenu from "./ChartMenu";
-import ChartDashboard  from "./Chart";
+import ChartDashboard from "./Chart";
 import LastOrders from "./LastOrders";
 
 export default function DashboardSummary() {
@@ -39,42 +39,41 @@ export default function DashboardSummary() {
 
   return (
     <div>
-      <Card className="shadow-stone-100/50 border-none">
+      <Card className="shadow-stone-100/50 border-none min-h-[70vh]">
         <CardHeader>
           <div className="flex justify-between items-center">
             <p className="text-secondary">ملخص المتجر ( 2025/12/13-02 )</p>
             <p className="text-right text-primary">عرض الكل</p>
           </div>
         </CardHeader>
-        <CardContent className="flex  gap-4">
-          {/* summary items */}
-          <div className="">
-            {data.map((item, idx) => (
-              <div
-                key={item.label}
-                onClick={() => setActiveIdx(idx)}
-                style={{ cursor: "pointer" }}
-              >
-                <ChartMenu
-                  data={{
-                    label: item.label,
-                    amount: item.amount,
-                    icon_url: item.icon_url,
-                    is: idx === activeIdx,
-                  }}
-                />
-              </div>
-            ))}
+        <CardContent>
+          <div className="flex  gap-4">
+            {/* summary items */}
+            <div className="">
+              {data.map((item, idx) => (
+                <div
+                  key={item.label}
+                  onClick={() => setActiveIdx(idx)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <ChartMenu
+                    data={{
+                      label: item.label,
+                      amount: item.amount,
+                      icon_url: item.icon_url,
+                      is: idx === activeIdx,
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex-1 w-full -ml-16 overflow-x-auto">
+              <ChartDashboard />
+            </div>
           </div>
-          <div className="flex-1 w-full -ml-16 overflow-x-auto">
-            <ChartDashboard />
-          </div>
-
-        </CardContent>
-        <CardFooter>
           {/*  last updated  orders */}
-          <LastOrders />
-        </CardFooter>
+           <LastOrders />
+        </CardContent>
       </Card>
     </div>
   );
