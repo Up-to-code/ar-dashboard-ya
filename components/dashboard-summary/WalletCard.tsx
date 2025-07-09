@@ -22,7 +22,7 @@ const data = [
 ];
 function WalletCard() {
   return (
-    <Card className="shadow-xl shadow-[#3B4B6514] rounded-2xl border-none">
+    <Card className="shadow-xl shadow-[#3B4B6514] rounded-2xl border-none my-2">
       <CardHeader className="flex justify-between items-center">
         <div className=" font-bold text-secondary">المحفظة</div>
 
