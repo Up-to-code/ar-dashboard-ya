@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ChevronDown, ChevronUp,   CreditCard, DollarSign, Shield, Users, ShoppingCart, Globe, Star, Settings } from 'lucide-react';
+import { ChevronDown, ChevronUp,   CreditCard, DollarSign, Shield,  ShoppingCart, Globe, Star, Settings } from 'lucide-react';
 
 const WalletInterface = () => {
   const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({
