@@ -43,22 +43,25 @@ const Sidebar = () => {
   const activeItem = getActiveItem();
 
   return (
-    <div className="h-[911px] px-6 py-6 bg-white rounded-[30px] shadow outline  outline-offset-[-1px] outline-black/10 inline-flex flex-col justify-end items-end gap-7 overflow-hidden" >
+    <div className="h-[90vh] min-h-[910px] w-64  bg-white rounded-[30px] shadow-lg  flex flex-col">
       {/* Header Section */}
-      <SidebarHeader />
+      <div className="p-6">
+        <SidebarHeader />
+      </div>
+      
       {/* Main Content */}
-      <div className="self-stretch h-[781px] flex flex-col justify-between items-end">
-        <div className="w-56 inline-flex justify-end items-start gap-4">
-          <div className="flex-1 inline-flex flex-col justify-start items-end gap-6">
-            {/* Main Navigation */}
-            <MainNavigation 
-              activeItem={activeItem} 
-              onItemClick={() => {}} 
-            />
-            {/* Applications Section */}
-            <ApplicationsSection />
-          </div>
+      <div className="flex-1 flex flex-col justify-between px-6 pb-6">
+        {/* Navigation and Applications */}
+        <div className="flex flex-col gap-6">
+          {/* Main Navigation */}
+          <MainNavigation 
+            activeItem={activeItem} 
+            onItemClick={() => {}} 
+          />
+          {/* Applications Section */}
+          <ApplicationsSection />
         </div>
+        
         {/* Download Section */}
         <DownloadSection />
       </div>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { ChevronDown, ChevronUp, Wallet, CreditCard, DollarSign, Shield, Users, ShoppingCart, Globe, Star, Settings } from 'lucide-react';
+import { ChevronDown, ChevronUp,   CreditCard, DollarSign, Shield, Users, ShoppingCart, Globe, Star, Settings } from 'lucide-react';
 
 const WalletInterface = () => {
   const [expandedSections, setExpandedSections] = useState<{ [key: string]: boolean }>({
@@ -94,11 +94,10 @@ const WalletInterface = () => {
   ];
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen" dir="rtl">
+ 
 
-
-      {/* Tasks Card */}
-      <Card className="m-4 bg-white rounded-2xl shadow-sm">
+ 
+    <Card className="shadow-xl shadow-[#3B4B6514] rounded-2xl border-none my-2">
         <CardHeader className="pb-3">
           <CardTitle className="text-right text-gray-800 font-medium">المهام المقترحة</CardTitle>
         </CardHeader>
@@ -106,13 +105,22 @@ const WalletInterface = () => {
           {features.map((feature) => (
             <div key={feature.key} className="border-b border-gray-100 last:border-b-0 pb-3 last:pb-0">
               <div className="flex justify-between items-center">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 justify-between">
+                  
                   <Checkbox
                     checked={checkboxes[feature.key]}
                     onCheckedChange={() => toggleCheckbox(feature.key)}
-                    className="data-[state=checked]:bg-green-500 data-[state=checked]:border-green-500"
+                    className="data-[state=primary]:bg-green-500 data-[state=primary]:border-green-500 rounded-full w-6 h-6 flex items-center justify-center"
                   />
-                  <button
+                  <div className='flex items-center gap-2'>
+                              <div className="flex items-center gap-2 text-right">
+                  <span className="text-sm text-gray-700 font-bold ">{feature.title}</span>
+                 </div>
+                  
+                  </div>
+ 
+                </div>
+                     <button
                     onClick={() => toggleSection(feature.key)}
                     className="text-gray-600 hover:text-gray-800 transition-colors"
                   >
@@ -121,12 +129,7 @@ const WalletInterface = () => {
                     ) : (
                       <ChevronDown className="w-4 h-4" />
                     )}
-                  </button>
-                </div>
-                <div className="flex items-center gap-2 text-right">
-                  <span className="text-gray-700 text-sm">{feature.title}</span>
-                  {feature.icon}
-                </div>
+                  </button>  
               </div>
               
               {expandedSections[feature.key] && feature.description && (
@@ -147,8 +150,7 @@ const WalletInterface = () => {
           ))}
         </CardContent>
       </Card>
-    </div>
-  );
+   );
 };
 
 export default WalletInterface;
